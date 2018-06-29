@@ -79,3 +79,22 @@ div.hr {
   border-radius: 50%;
   background: url("../../images/laptop.svg");
 }
+
+.input_error {
+  border-color: red;
+}
+
+.errors {
+  ul {
+    padding: 5px;
+    border-width: 0 1px 1px 1px;
+    border-color: red;
+
+    .error {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      color: red;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+- inputs.each do |name|
+  - if flash[name]
+    == input name, errors: flash[name], value: error_field(name)
+  - else
+    == input name, value: error_field(name)
