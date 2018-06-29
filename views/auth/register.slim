@@ -1,2 +1,9 @@
-div
-  | Register
+== styles :register, :form
+
+div.register_form_holder
+  form.register_form method='POST' action='/signup'
+    == input :first_name
+    == input :last_name
+    == input :email
+    == input :password, :password
+    == submit_button "Register"
