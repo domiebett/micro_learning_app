@@ -1,0 +1,29 @@
+.dash_navbar {
+  background-color: white;
+  color: black;
+  padding: 10px;
+
+  .nav_sections {
+    display: inline-flex;
+
+    .app_name {
+      a {
+        font-size: 17px;
+      }
+    }
+  }
+
+  .auth_options {
+    display: inline-flex;
+    float: right;
+
+    a {
+      margin-right: 20px;
+    }
+  }
+}
+.hr {
+  margin: 0 auto;
+  margin-top: 9px;
+  width: 96vw !important;
+}

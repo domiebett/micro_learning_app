@@ -1,0 +1,8 @@
+== styles :register, :form
+
+div.register_form_holder
+  form.register_form method='POST' action='/signup'
+
+    == slim :"general/_form", locals: { inputs: @inputs }
+
+    == submit_button "Register"

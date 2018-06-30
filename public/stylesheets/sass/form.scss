@@ -1,0 +1,30 @@
+.text_input_holder {
+  margin-bottom: 20px;
+
+  label {
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 100%;
+
+    &:focus, &:active {
+      border-color: #363637;
+    }
+  }
+}
+
+.submit_button_holder {
+  margin-top: 30px;
+
+  .submit_button {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #6495ED;
+    color: white;
+
+    &:hover {
+      background-color: #4f70b5;
+    }
+  }
+}
