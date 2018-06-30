@@ -5,7 +5,10 @@ class User < ActiveRecord::Base
   include BCrypt
 
   validates :first_name, :last_name, :email, presence: true
+  validates_format_of :email,
+                      with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates :email, uniqueness: true
+  validates :first_name, :last_name, length: { minimum: 2 }
   validates :password_hash, length: { minimum: 6 }
 
   def password

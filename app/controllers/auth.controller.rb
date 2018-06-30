@@ -20,7 +20,7 @@ class App < Sinatra::Application
       last_name: params[:last_name],
       email: params[:email]
     )
-    @user.password = params[:password]
+    @user.password = params[:password] || ''
 
     if @user.save
       session[:user_id] = @user.id

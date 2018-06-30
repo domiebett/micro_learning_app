@@ -16,6 +16,7 @@ GEM
     bcrypt (3.1.12)
     concurrent-ruby (1.0.5)
     daemons (1.2.6)
+    database_cleaner (1.7.0)
     eventmachine (1.2.7)
     ffi (1.9.25)
     i18n (1.0.1)
@@ -62,6 +63,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   bcrypt
+  database_cleaner
   sass
   sinatra
   sinatra-activerecord

@@ -5,3 +5,11 @@ development:
   pool: 2
   username: dominicbett
   password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: micro_learning_test
+  pool: 2
+  username: dominicbett
+  password:
