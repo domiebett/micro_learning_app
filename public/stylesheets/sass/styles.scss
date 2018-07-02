@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  padding: 55px 0;
+  padding: 70px 0;
   width: 100vw;
   overflow-x: hidden;
 }
@@ -97,4 +97,32 @@ div.hr {
       color: red;
     }
   }
+}
+
+.flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 100vw;
+  text-align: center;
+  transition: opacity ease-in-out;
+  animation: 5s fadeout;
+  visibility: hidden;
+
+  &.warning {
+    background-color: red;
+    color: white;
+  }
+
+  &.notice {
+    background-color: blue;
+    color: white;
+  }
+}
+
+@keyframes fadeout {
+  0% { visibility: visible; }
+  90% { visibility: visible; }
+  100% { visibility: hidden; }
 }

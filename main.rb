@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'slim'
-require_relative 'app/helpers/html.helper'
+require_relative 'app/helpers/init'
 
 class App < Sinatra::Application
 

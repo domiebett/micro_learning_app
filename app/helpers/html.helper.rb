@@ -13,7 +13,7 @@ module Sinatra
     end
 
     def input(name, args = {})
-      args[:type] ||= name.to_s == 'password' ? 'password' : 'text'
+      args[:type] ||= %w[email password].include?(name.to_s) ? name : 'text'
       args[:value] ||= ''
       args[:errors] ||= []
 
