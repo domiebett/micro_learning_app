@@ -81,4 +81,20 @@ describe 'App' do
       expect(last_response.body).to include 'You entered wrong email or password'
     end
   end
+
+  context 'when user logs out' do
+    before do
+      create(:user)
+      post '/signin', @user
+      get '/logout'
+    end
+
+    subject { last_response }
+    it { is_expected.to be_redirect }
+
+    it 'should redirect to dashboard' do
+      follow_redirect!
+      expect(last_request.path).to eq '/dashboard'
+    end
+  end
 end

@@ -112,12 +112,12 @@ div.hr {
   visibility: hidden;
 
   &.warning {
-    background-color: red;
+    background-color: #ff0000;
     color: white;
   }
 
   &.notice {
-    background-color: blue;
+    background-color: #009c00;
     color: white;
   }
 }
