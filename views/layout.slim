@@ -7,7 +7,7 @@ html
   body
     - if flash[:warning]
       div.flash.warning #{flash[:warning]}
-    - elsif flash[:notice]
+    - if flash[:notice]
       div.flash.notice #{flash[:notice]}
 
     == yield

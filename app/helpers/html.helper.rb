@@ -2,6 +2,23 @@ require 'sinatra'
 
 module Sinatra
   module HtmlHelper
+
+    HTML_METHODS = %w[PUT PATCH DELETE].freeze
+
+    def use_method(method = 'PUT')
+      method = HTML_METHODS.include?(method.to_s.upcase) ? method : 'GET'
+      %(<input type="hidden" name="_method" value="#{method}")
+    end
+
+    def button_to(value, method, route)
+      %(
+        <form method="POST" action="#{route}">
+          #{use_method(method)}
+          #{submit_button(value)}
+        </form>
+      )
+    end
+
     def styles(*args)
       styles = []
       styles << args

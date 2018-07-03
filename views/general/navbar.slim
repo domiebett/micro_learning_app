@@ -7,17 +7,18 @@ div.navbar.dash_navbar
       a.link href="/dashboard" Learners hub
   - if !logged_in?
     div.nav_sections.auth_options
-    div
-      a.link href="/signin" Sign In
-    div
-      a.link href="/signup" Sign Up
+      div
+        a.link href="/signin" Sign In
+      div
+        a.link href="/signup" Sign Up
   - else
     div.nav_sections.auth_options
       div
         a.link href="/about" About
       div
         a.link href="/services" Services
-      div
+      div.user
         a.link #{current_user.full_name} &#x25bc;
-
-  div.hr
+        div.user_options
+          a.link Profile
+          a.link href="/logout" Logout

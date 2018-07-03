@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'slim'
-require 'sinatra/flash'
 
 require_relative '../models/user'
 
@@ -13,6 +12,12 @@ class App < Sinatra::Application
   get '/signup' do
     @inputs = %i[first_name last_name email password]
     slim :"auth/register"
+  end
+
+  get '/logout' do
+    session[:user_id] = nil
+    flash_notice 'You have logged out successfully'
+    redirect '/dashboard'
   end
 
   post '/signup' do
@@ -46,18 +51,8 @@ class App < Sinatra::Application
       session[:user_id] = @user.id
       redirect '/'
     else
-      flash_messages warning: 'You entered wrong email or password'
+      flash_warning 'You entered wrong email or password'
       redirect '/signin'
     end
-  end
-
-  private
-  def flash_messages(error_messages)
-    error_messages.each do |key, value|
-      flash[key] = value
-    end
-    flash[:password] = error_messages[:password_hash]
-
-    session[:error_fields] = params
   end
 end

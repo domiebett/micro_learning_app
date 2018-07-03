@@ -108,6 +108,7 @@ div.hr {
   text-align: center;
   transition: opacity ease-in-out;
   animation: 5s fadeout;
+  z-index: 200;
   visibility: hidden;
 
   &.warning {
