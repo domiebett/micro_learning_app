@@ -3,6 +3,6 @@
 div.auth_form_holder
   form.register_form method='POST' action='/signup'
 
-    == slim :"auth/_form", locals: { inputs: @inputs }
+    == slim :"auth/_inputs", locals: { inputs: @inputs }
 
     == submit_button "Register"

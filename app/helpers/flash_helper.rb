@@ -14,9 +14,9 @@ module Sinatra
 
     def flash_messages(messages)
       messages.each do |key, value|
+        flash[:password] = value if key == :password_hash
         flash[key] = value
       end
-      flash[:password] = messages[:password_hash]
 
       session[:error_fields] = params
     end

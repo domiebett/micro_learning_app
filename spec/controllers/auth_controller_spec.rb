@@ -66,10 +66,17 @@ describe 'App' do
     subject { last_response }
     it { is_expected.to be_redirect }
 
-    it 'should display error for wrong email' do
-      post '/signin', email: 'wrong@example.com', password: 'password'
+    it 'should display error for unregistered email' do
+      post '/signin', email: 'non_existent@example.com', password: 'password'
       follow_redirect!
       expect(last_response.body).to include 'Email is not registered. Please sign up'
+    end
+
+    it 'should display error for invalid details' do
+      post '/signin', email: 'invalid_email', password: 'pas'
+      follow_redirect!
+      expect(last_response.body).to include 'the email is invalid',
+                                            'expects atleast 6 characters'
     end
 
     before do

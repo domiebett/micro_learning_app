@@ -4,6 +4,7 @@ require 'slim'
 require_relative '../models/user'
 
 class App < Sinatra::Application
+
   get '/signin' do
     @inputs = %i[email password]
     slim :"auth/login"
@@ -21,11 +22,7 @@ class App < Sinatra::Application
   end
 
   post '/signup' do
-    @user = User.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email]
-    )
+    @user = User.new(accept_params(params, :first_name, :last_name, :email))
     @user.password = params[:password] || ''
 
     if @user.save
@@ -39,6 +36,7 @@ class App < Sinatra::Application
   end
 
   post '/signin' do
+    validate_login_params(params[:email], params[:password])
     @user = User.find_by(email: params[:email])
 
     if @user.nil?
