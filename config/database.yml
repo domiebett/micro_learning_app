@@ -11,5 +11,5 @@ test:
   encoding: unicode
   database: micro_learning_test
   pool: 2
-  username: dominicbett
+  username: postgres
   password:
