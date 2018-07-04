@@ -1,8 +1,8 @@
-== styles :register, :form
+== styles :form
 
-div.register_form_holder
+div.auth_form_holder
   form.register_form method='POST' action='/signup'
 
-    == slim :"general/_form", locals: { inputs: @inputs }
+    == slim :"auth/_inputs", locals: { inputs: @inputs }
 
     == submit_button "Register"

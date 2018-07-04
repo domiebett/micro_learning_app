@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  padding: 55px 0;
+  padding: 70px 0;
   width: 100vw;
   overflow-x: hidden;
 }
@@ -25,7 +25,9 @@ body {
   padding: 10px;
   background-color: rgba(0,0,0,0.24);
   text-decoration: none;
+  text-align: center;
   color: black;
+  cursor: pointer;
 
   &:hover {
     background-color: rgba(0,0,0,0.4);
@@ -38,6 +40,8 @@ body {
   padding: 10px;
   text-decoration: none;
   color: black;
+  cursor: pointer;
+  border: none;
 
   &:hover {
     color: #4f70b5;
@@ -97,4 +101,33 @@ div.hr {
       color: red;
     }
   }
+}
+
+.flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 100vw;
+  text-align: center;
+  transition: opacity ease-in-out;
+  animation: 5s fadeout;
+  z-index: 200;
+  visibility: hidden;
+
+  &.warning {
+    background-color: #ff0000;
+    color: white;
+  }
+
+  &.notice {
+    background-color: #009c00;
+    color: white;
+  }
+}
+
+@keyframes fadeout {
+  0% { visibility: visible; }
+  90% { visibility: visible; }
+  100% { visibility: hidden; }
 }

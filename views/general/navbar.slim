@@ -5,11 +5,20 @@ div.navbar.dash_navbar
     div.logo
     span.app_name
       a.link href="/dashboard" Learners hub
-
-  div.nav_sections.auth_options
-    div
-      a.link href="/signin" Sign In
-    div
-      a.link href="/signup" Sign Up
-
-  div.hr
+  - if !logged_in?
+    div.nav_sections.auth_options
+      div
+        a.link href="/signin" Sign In
+      div
+        a.link href="/signup" Sign Up
+  - else
+    div.nav_sections.auth_options
+      div
+        a.link href="/about" About
+      div
+        a.link href="/services" Services
+      div.user
+        a.link #{current_user.full_name} &#x25bc;
+        div.user_options
+          a.link Profile
+          a.link href="/logout" Logout

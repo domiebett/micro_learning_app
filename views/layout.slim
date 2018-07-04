@@ -5,4 +5,9 @@ html
     == styles :styles
 
   body
+    - if flash[:warning]
+      div.flash.warning #{flash[:warning]}
+    - if flash[:notice]
+      div.flash.notice #{flash[:notice]}
+
     == yield
