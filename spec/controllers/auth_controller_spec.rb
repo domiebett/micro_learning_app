@@ -1,15 +1,6 @@
 require_relative '../spec_helper'
 
 describe 'App' do
-  before do
-    @user = {
-      first_name: 'Dominic',
-      last_name: 'Bett',
-      email: 'bett@example.com',
-      password: 'password'
-    }
-  end
-
   context 'when user opens signup url' do
     before { get '/signup' }
     subject { last_request.path }

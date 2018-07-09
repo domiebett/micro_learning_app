@@ -5,11 +5,13 @@ module Sinatra
 
     HTML_METHODS = %w[PUT PATCH DELETE].freeze
 
+    # Builds input that makes form send requests other that POST.
     def use_method(method = 'PUT')
       method = HTML_METHODS.include?(method.to_s.upcase) ? method : 'GET'
       %(<input type="hidden" name="_method" value="#{method}")
     end
 
+    # Creates a button send requests other than get.
     def button_to(value, method, route)
       %(
         <form method="POST" action="#{route}">
@@ -19,6 +21,7 @@ module Sinatra
       )
     end
 
+    # Creates link attributes for all styles provided.
     def styles(*args)
       styles = []
       styles << args
@@ -29,6 +32,7 @@ module Sinatra
       end.join
     end
 
+    # Creates an custom input field that takes care of all bulky work.
     def input(name, args = {})
       args[:type] ||= %w[password].include?(name.to_s) ? name : 'text'
       args[:value] ||= ''
@@ -53,6 +57,7 @@ module Sinatra
       )
     end
 
+    # Creates a submit button for a form.
     def submit_button(submit_button_value)
       submit_button = %(
         <input class="button
@@ -68,6 +73,7 @@ module Sinatra
       )
     end
 
+    # Creates errors for input fields
     def error_field(name)
       return '' if name.to_sym == :password
       session[:error_fields] ? session[:error_fields][name.to_sym] : ''

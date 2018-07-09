@@ -3,6 +3,7 @@
 == slim :"general/navbar"
 
 div.content_container.topic_container
+  | Select the topics you would like to learn
   div.topics_holder
     form action="/topics" method="POST"
       - @topics.each do |topic|
