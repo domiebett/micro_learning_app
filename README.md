@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/domiebett/micro_learning_app.svg?branch=develop)](https://travis-ci.org/domiebett/micro_learning_app)    [![Coverage Status](https://coveralls.io/repos/github/domiebett/micro_learning_app/badge.svg?branch=develop)](https://coveralls.io/github/domiebett/micro_learning_app?branch=develop)
+
 # Micro Learning App
 This is a Sinatra application designed to send a user a page daily on a topic they would love to learn. It helps users learn in a step by step design with daily relevant posts to help them build up their knowledge on topics.
 
