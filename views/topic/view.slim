@@ -1,0 +1,19 @@
+== styles :topic
+
+== slim :"general/navbar"
+
+div.content_container.topic_container
+  | Select the topics you would like to learn
+  div.topics_holder
+    form action="/topics" method="POST"
+      - @topics.each do |topic|
+        label.topics
+          - if current_user.topics.include? topic
+            input type="checkbox" name="topics[]" value="#{topic.name}" checked=""
+          - else
+            input type="checkbox" name="topics[]" value="#{topic.name}"
+
+          span.checkmark
+          span.name #{topic.name}
+      input type="hidden" name="category" value="#{ @topics[0].category.name }"
+      == submit_button 'Save topics'

@@ -3,14 +3,17 @@ require_relative '../models/user'
 
 module Sinatra
   module AuthHelper
+    # Checks if there is any logged in user
     def logged_in?
       !session[:user_id].nil?
     end
 
+    # Gets the current user
     def current_user
       User.find(session[:user_id])
     end
 
+    # Helps to validate login params
     def validate_login_params(email, password)
       errors = { email: [], password: [] }
       email ||= ''

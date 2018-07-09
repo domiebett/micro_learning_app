@@ -2,6 +2,7 @@
 
 div.auth_form_holder
   form.login_form method="POST" action="/signin"
+
     == slim :"auth/_inputs", locals: {inputs: @inputs}
 
     == submit_button "Login"

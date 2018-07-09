@@ -1,4 +1,13 @@
+== styles :home
+
 == slim :"general/navbar"
 
-div
-  | Home Pages
+div.content_container
+  | Your topics
+
+  ul.topics
+    - @topics.each do |topic|
+      li.topic #{topic.name}
+
+  div.add_topic_holder
+    a.add_topic href="/categories" Add Topic

@@ -1,0 +1,22 @@
+require_relative('../app/models/category')
+require_relative('../app/models/topic')
+
+Category.create(name: 'programming')
+programming = Category.find_by(name: 'programming')
+Category.create(name: 'hacking')
+hacking = Category.find_by(name: 'hacking')
+Category.create(name: 'philosophy')
+philosophy = Category.find_by(name: 'philosophy')
+
+programming.topics.create(name: 'ruby')
+programming.topics.create(name: 'python')
+programming.topics.create(name: 'java')
+programming.topics.create(name: 'go')
+
+hacking.topics.create(name: 'metaspoilt')
+hacking.topics.create(name: 'ping')
+hacking.topics.create(name: 'nmap')
+
+philosophy.topics.create(name: 'evolution')
+philosophy.topics.create(name: 'religion')
+philosophy.topics.create(name: 'love')

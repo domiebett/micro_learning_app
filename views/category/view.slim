@@ -1,0 +1,11 @@
+== styles :category
+
+== slim :"general/navbar"
+
+div.content_container.category_container
+  | Select the category for the topic you would like to learn.
+  div.category_holder
+    - @categories.each do |category|
+      div.categories
+        a.link href="/topics/#{category.name}"
+          span #{category.name}
