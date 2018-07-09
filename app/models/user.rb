@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, length: { minimum: 2 }
   validates :password_hash, length: { minimum: 6 }
 
+  has_many :user_topics
+  has_many :topics, through: :user_topics
+
   def password
     @password ||= Password.new(password_hash)
   end

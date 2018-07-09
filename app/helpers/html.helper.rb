@@ -25,7 +25,7 @@ module Sinatra
 
       styles.flatten.uniq.map do |style|
         %(<link rel="stylesheet" type="text/css"
-              href="stylesheets/#{style}.css" />)
+              href="/stylesheets/#{style}.css" />)
       end.join
     end
 
