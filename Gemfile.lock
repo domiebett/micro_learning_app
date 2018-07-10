@@ -34,6 +34,7 @@ GEM
     json (2.1.0)
     minitest (5.11.3)
     mustermann (1.0.2)
+    news-api (0.0.0)
     pg (1.0.0)
     rack (2.0.5)
     rack-protection (2.0.3)
@@ -105,6 +106,7 @@ DEPENDENCIES
   coveralls
   database_cleaner
   factory_bot
+  news-api
   pg
   rack-test
   rake

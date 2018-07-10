@@ -15,6 +15,7 @@ gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'slim'
 gem 'thin'
+gem 'news-api'
 
 group :test, :development do
   gem 'coveralls'

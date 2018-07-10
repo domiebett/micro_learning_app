@@ -17,11 +17,6 @@ class App < Sinatra::Application
     user = current_user
     topic_names = params[:topics] || []
 
-    if topic_names.empty?
-      flash_warning 'You have not selected any topic'
-      redirect "/topics/#{params[:category]}"
-    end
-
     category = Category.find_by(name: params[:category])
     category.topics.each do |topic|
       user.topics.delete topic unless topic_names.include? topic.name
@@ -29,6 +24,7 @@ class App < Sinatra::Application
 
     topic_names.each do |topic_name|
       topic = Topic.find_by(name: topic_name)
+      topic.fetch_articles
       user.topics << topic unless user.topics.include? topic
     end
 

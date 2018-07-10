@@ -11,3 +11,10 @@ div.content_container
 
   div.add_topic_holder
     a.add_topic href="/categories" Add Topic
+
+  div.articles
+    - @articles.each do |topic_name, articles|
+      h3 #{topic_name}
+      - articles.each do |article|
+        div.title #{ article.title }
+        div.description #{ article.description }
