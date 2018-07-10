@@ -33,6 +33,11 @@ describe 'App' do
       expect(last_request.path).to eq '/'
       expect(last_response.body).to include 'ruby', 'java', 'python'
     end
+
+    it 'should fetch articles for that topic' do
+      follow_redirect!
+      expect(last_response.body).to include 'title', 'description'
+    end
   end
 
   context 'when non logged in user accesses "/topics:category" url' do
@@ -42,19 +47,6 @@ describe 'App' do
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_request.path).to eq '/signin'
-    end
-  end
-
-  context "when logged in user doesn't select any topic" do
-    before do
-      post '/signin', @user
-      post '/topics', category: 'programming'
-    end
-
-    it 'should display error message to the user' do
-      expect(last_response).to be_redirect
-      follow_redirect!
-      expect(last_response.body).to include 'You have not selected any topic'
     end
   end
 end

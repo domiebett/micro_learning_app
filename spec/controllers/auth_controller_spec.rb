@@ -57,12 +57,6 @@ describe 'App' do
     subject { last_response }
     it { is_expected.to be_redirect }
 
-    it 'should display error for unregistered email' do
-      post '/signin', email: 'non_existent@example.com', password: 'password'
-      follow_redirect!
-      expect(last_response.body).to include 'Email is not registered. Please sign up'
-    end
-
     it 'should display error for invalid details' do
       post '/signin', email: 'invalid_email', password: 'pas'
       follow_redirect!

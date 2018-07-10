@@ -28,6 +28,7 @@ class App < Sinatra::Application
     if @user.save
       session[:user_id] = @user.id
       session[:error_fields] = nil
+      flash_notice 'You successfully signed up'
       redirect '/'
     else
       flash_messages(@user.errors.messages)
@@ -39,18 +40,15 @@ class App < Sinatra::Application
     validate_login_params(params[:email], params[:password])
     @user = User.find_by(email: params[:email])
 
-    if @user.nil?
-      messages = ['Email is not registered. Please sign up']
-      flash_messages email: messages
-      redirect '/signin'
+    unless @user.nil?
+      if @user.password == params[:password]
+        session[:user_id] = @user.id
+        flash_notice 'You successfully signed in'
+        redirect '/'
+      end
     end
 
-    if @user.password == params[:password]
-      session[:user_id] = @user.id
-      redirect '/'
-    else
-      flash_warning 'You entered wrong email or password'
-      redirect '/signin'
-    end
+    flash_warning 'You entered wrong email or password'
+    redirect '/signin'
   end
 end
