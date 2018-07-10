@@ -15,5 +15,11 @@ div.content_container.topic_container
 
           span.checkmark
           span.name #{topic.name}
+
+      div.topics
+        a.link
+          span.add +
+          span.text Add Topic
+
       input type="hidden" name="category" value="#{ @topics[0].category.name }"
       == submit_button 'Save topics'
