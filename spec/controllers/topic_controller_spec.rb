@@ -33,6 +33,11 @@ describe 'App' do
       expect(last_request.path).to eq '/'
       expect(last_response.body).to include 'ruby', 'java', 'python'
     end
+
+    it 'should fetch articles for that topic' do
+      follow_redirect!
+      expect(last_response.body).to include 'title', 'description'
+    end
   end
 
   context 'when non logged in user accesses "/topics:category" url' do

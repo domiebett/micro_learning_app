@@ -26,4 +26,5 @@ group :test, :development do
   gem 'rspec'
   gem 'shotgun'
   gem 'simplecov'
+  gem 'webmock'
 end

@@ -4,8 +4,16 @@ require 'database_cleaner'
 require 'factory_bot'
 require 'simplecov'
 require 'coveralls'
+require 'webmock/rspec'
+require 'news-api'
+
+require_relative 'mocks/news_mock'
 
 Coveralls.wear!
+
+SimpleCov.start
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 ENV['RACK_ENV'] = 'test'
 
@@ -17,7 +25,6 @@ module RSpecMixin
   def app
     App
   end
-  SimpleCov.start
 end
 
 RSpec.configure do |config|
@@ -25,11 +32,16 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     FactoryBot.find_definitions
-    DatabaseCleaner.strategy = :truncation, {except: %w[categories topics] }
+    DatabaseCleaner.strategy = :truncation, { except: %w[categories topics] }
   end
 
   config.before(:each) do
     DatabaseCleaner.start
+
+    news_mock = NewsMock.new
+
+    allow(News).to receive(:new).and_return news_mock
+
     @user = {
       first_name: 'Dominic',
       last_name: 'Bett',
