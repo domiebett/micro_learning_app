@@ -10,6 +10,6 @@ class NewsApi
       q: topic_name,
       language: 'en',
       sortBy: 'relevance'
-    )[0..3]
+    )
   end
 end
