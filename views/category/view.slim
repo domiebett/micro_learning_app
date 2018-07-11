@@ -9,7 +9,10 @@ div.content_container.category_container
       div.categories
         a.link href="/topics/#{category.name}"
           span #{category.name}
-    div.categories.add_category
-      a.link
-        span.add +
-        span.text Add Category
+    - if current_user.admin?
+      div.categories.add_category
+        a.link.modal_trigger
+          span.add +
+          span.text Add Category
+
+== slim :"general/_add_modal", locals: { display_name: 'category', route_name: 'categories', data: nil }

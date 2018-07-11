@@ -1,0 +1,16 @@
+== styles :add_modal
+
+div.modal_background
+  div.modal_container
+    form action="/#{route_name}" method="POST"
+      div.modal_header
+        h3.modal_title Add #{display_name}
+        span.close_button X
+
+      div.modal_content
+        == input :name
+        - unless data.nil?
+          input type='hidden' name='#{data[:name]}' value='#{data[:value]}'
+
+      div.modal_footer
+        == submit_button "Add #{display_name}"

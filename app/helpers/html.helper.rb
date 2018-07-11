@@ -8,7 +8,7 @@ module Sinatra
     # Builds input that makes form send requests other that POST.
     def use_method(method = 'PUT')
       method = HTML_METHODS.include?(method.to_s.upcase) ? method : 'GET'
-      %(<input type="hidden" name="_method" value="#{method}")
+      %(<input type="hidden" name="_method" value="#{method}" />)
     end
 
     # Creates a button send requests other than get.
@@ -29,6 +29,17 @@ module Sinatra
       styles.flatten.uniq.map do |style|
         %(<link rel="stylesheet" type="text/css"
               href="/stylesheets/#{style}.css" />)
+      end.join
+    end
+
+    # Creates script attributes for all scripts provided
+    def scripts(*args)
+      scripts = []
+      scripts << args
+
+      scripts.flatten.uniq.map do |script|
+        %(<script type="text/javascript"
+              src="/javascript/#{script}.js"></script>)
       end.join
     end
 

@@ -38,7 +38,7 @@ describe 'App' do
 
   context 'when user enters correct sign in details' do
     before do
-      create(:user)
+      create(:normal_user)
       post '/signin', @user
     end
 
@@ -65,7 +65,7 @@ describe 'App' do
     end
 
     before do
-      create(:user)
+      create(:normal_user)
       post '/signin', email: 'bett@example.com', password: 'wrong_password'
     end
     it 'should display error for wrong password' do
@@ -76,7 +76,7 @@ describe 'App' do
 
   context 'when user logs out' do
     before do
-      create(:user)
+      create(:normal_user)
       post '/signin', @user
       get '/logout'
     end

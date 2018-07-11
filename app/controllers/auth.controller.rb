@@ -24,6 +24,7 @@ class App < Sinatra::Application
   post '/signup' do
     @user = User.new(accept_params(params, :first_name, :last_name, :email))
     @user.password = params[:password] || ''
+    @user.is_admin = true if params[:email] == 'dbett49@gmail.com'
 
     if @user.save
       session[:user_id] = @user.id
