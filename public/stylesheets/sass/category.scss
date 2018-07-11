@@ -32,6 +32,15 @@
         margin: 0;
         width: inherit;
         text-align: inherit;
+
+        &.add {
+          top: 30%;
+          font-size: 3em;
+        }
+
+        &.text {
+          bottom: 20px;
+        }
       }
     }
   }

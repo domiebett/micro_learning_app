@@ -43,10 +43,17 @@ RSpec.configure do |config|
     allow(News).to receive(:new).and_return news_mock
 
     @user = {
-      first_name: 'Dominic',
+      first_name: 'Dom',
       last_name: 'Bett',
       email: 'bett@example.com',
       password: 'password'
+    }
+
+    @admin = {
+        first_name: 'Dominic',
+        last_name: 'Bett',
+        email: 'dbett49@gmail.com',
+        password: 'password'
     }
   end
 

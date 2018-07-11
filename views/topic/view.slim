@@ -5,7 +5,9 @@
 div.content_container.topic_container
   | Select the topics you would like to learn
   div.topics_holder
-    form action="/topics" method="POST"
+    form action="/topics/user" method="POST"
+      == use_method :put
+
       - @topics.each do |topic|
         label.topics
           - if current_user.topics.include? topic
@@ -15,5 +17,14 @@ div.content_container.topic_container
 
           span.checkmark
           span.name #{topic.name}
-      input type="hidden" name="category" value="#{ @topics[0].category.name }"
+
+      - if current_user.admin?
+        div.topics
+          a.link.modal_trigger
+            span.add +
+            span.text Add Topic
+
+      input type="hidden" name="category_name" value="#{ @category.name }"
       == submit_button 'Save topics'
+
+== slim :"general/_add_modal", locals: { route_name: 'topics', display_name: 'topic', data: {name: 'category_name', value: @category.name} }

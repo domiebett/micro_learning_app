@@ -2,10 +2,10 @@ require_relative '../spec_helper'
 
 describe 'App' do
   before do
-    create(:user)
+    create(:normal_user)
     @topics = {
         topics: %w[ruby java python],
-        category: 'programming'
+        category_name: 'programming'
     }
   end
 
@@ -24,7 +24,7 @@ describe 'App' do
   context 'when logged in user selects topics' do
     before do
       post '/signin', @user
-      post '/topics', @topics
+      put '/topics/user', @topics
     end
 
     it 'should show topics selected on homepage' do
@@ -47,6 +47,34 @@ describe 'App' do
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_request.path).to eq '/signin'
+    end
+  end
+
+  context 'when non-admin attempts to add a topic' do
+    before do
+      post '/signin', @user
+      post '/topics', @topics
+    end
+    it 'should return 401 response' do
+      expect(last_response.status).to be 401
+    end
+  end
+
+  context 'when admin attempts to add a topic' do
+    before do
+      create(:admin)
+      post '/signin', @admin
+      post '/topics', @topics
+    end
+
+    subject { last_response }
+    it { is_expected.to be_redirect }
+
+    before { post '/topics', {category_name: 'programming'}}
+    it 'should flag empty topics' do
+      expect(last_response).to be_redirect
+      follow_redirect!
+      expect(last_response.body).to include 'You did not enter a valid topic'
     end
   end
 end

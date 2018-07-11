@@ -14,6 +14,12 @@ class App < Sinatra::Application
       end
     end
   end
+
+  set(:admin) do |condition|
+    condition do
+      halt 401 unless current_user.admin?
+    end
+  end
 end
 
 require_relative 'app/controllers/init'

@@ -3,6 +3,8 @@ require_relative '../external_apis/news_api'
 
 class Topic < ActiveRecord::Base
   validates :name, uniqueness: true
+  validates :name, presence: true
+  validates :name, length: { minimum: 2 }
 
   belongs_to :category
   has_many :user_topics
