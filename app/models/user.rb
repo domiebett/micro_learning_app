@@ -1,6 +1,8 @@
 require 'sinatra/activerecord'
 require 'bcrypt'
 
+require_relative '../services/email'
+
 class User < ActiveRecord::Base
   include BCrypt
 
@@ -13,6 +15,8 @@ class User < ActiveRecord::Base
 
   has_many :user_topics
   has_many :topics, through: :user_topics
+
+  has_many :sent_articles, dependent: :destroy
 
   def password
     @password ||= Password.new(password_hash)
@@ -29,5 +33,21 @@ class User < ActiveRecord::Base
 
   def admin?
     is_admin
+  end
+
+  def send_article
+    user_articles = topics.each.map(&:articles).flatten
+
+    articles_not_sent = user_articles.select do |article|
+      sent_articles.find_by(article_id: article.id).nil?
+    end
+
+    random_article = articles_not_sent.sample
+    unless random_article.nil?
+      email_service = Email.new(full_name, email)
+      email_service.send_article(random_article)
+    end
+
+    sent_articles.create(article_id: random_article.id) unless random_article.nil?
   end
 end

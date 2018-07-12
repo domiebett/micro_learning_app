@@ -22,8 +22,13 @@ require File.expand_path '../main.rb', __dir__
 module RSpecMixin
   include Rack::Test::Methods
   include FactoryBot::Syntax::Methods
+
   def app
     App
+  end
+
+  def session
+    last_request.env['rack.session']
   end
 end
 

@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 2018_07_11_075250) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sent_articles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "article_id"
+    t.index ["article_id"], name: "index_sent_articles_on_article_id"
+    t.index ["user_id"], name: "index_sent_articles_on_user_id"
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string "name"
     t.bigint "category_id"
@@ -56,6 +63,8 @@ ActiveRecord::Schema.define(version: 2018_07_11_075250) do
   end
 
   add_foreign_key "articles", "topics"
+  add_foreign_key "sent_articles", "articles"
+  add_foreign_key "sent_articles", "users"
   add_foreign_key "topics", "categories"
   add_foreign_key "user_topics", "topics"
   add_foreign_key "user_topics", "users"

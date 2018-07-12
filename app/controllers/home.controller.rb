@@ -18,7 +18,6 @@ class App < Sinatra::Application
       @articles.store(topic.name.to_sym, topic.articles ? topic.articles : [])
     end
 
-    redirect '/categories' if @topics.empty?
     slim :homepage
   end
 end
