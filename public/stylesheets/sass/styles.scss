@@ -13,12 +13,13 @@ body {
   padding: 90px 0;
   width: 100vw;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .content_container {
+  margin: 0 auto;
   width: 70vw;
   height: auto;
-  margin-left: 15vw;
 }
 
 .button {
@@ -45,7 +46,7 @@ body {
   font-size: 15px;
   padding: 10px;
   text-decoration: none;
-  color: black;
+  color: inherit;
   cursor: pointer;
   border: none;
 
@@ -69,7 +70,7 @@ input {
 }
 
 .navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -131,6 +132,76 @@ div.hr {
     color: white;
   }
 }
+
+.table {
+  width: 100%;
+  text-overflow: ellipsis;
+
+  .thead {
+    width: 100%;
+    font-weight: bolder;
+    color: #4f70b5;
+    text-align: center;
+
+    .tr {
+      width: 100%;
+      margin: 10px 0 10px 0;
+      display: inline-flex;
+
+      .th {
+        margin: 0;
+      }
+    }
+  }
+
+  .tbody {
+    width: 100%;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    .tr {
+      width: 100%;
+      margin: 5px 0 5px 0;
+      display: inline-flex;
+      background-color: #f7f7f7;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ebebeb;
+        transform: scale(1.01);
+      }
+
+      .td {
+        margin: 0;
+        padding: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .link {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .column1 {
+    width: 25%;
+  }
+
+  .column2 {
+    width: 35%;
+  }
+
+  .column3 {
+    width: 20%;
+  }
+
+  .column4 {
+    width: 20%;
+  }
+}
+
 
 @keyframes fadeout {
   0% { visibility: visible; }

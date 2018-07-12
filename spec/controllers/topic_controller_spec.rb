@@ -1,4 +1,5 @@
 require_relative '../spec_helper'
+require_relative '../../app/models/article'
 
 describe 'App' do
   before do
@@ -36,7 +37,7 @@ describe 'App' do
 
     it 'should fetch articles for that topic' do
       follow_redirect!
-      expect(last_response.body).to include 'title', 'description'
+      expect(Article.count).to be 1
     end
   end
 

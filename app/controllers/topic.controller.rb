@@ -43,4 +43,13 @@ class App < Sinatra::Application
 
     redirect "/topics/#{@category.name}"
   end
+
+  delete '/topics/user/:topic_id', auth: true do
+    user = current_user
+    topic = Topic.find_by(id: params[:topic_id])
+
+    user.topics.delete topic
+
+    redirect '/'
+  end
 end

@@ -4,6 +4,7 @@
   padding: 10px;
   width: 70vw;
   left: 15vw;
+  z-index: 50;
 
   .nav_sections {
     display: inline-flex;
@@ -34,6 +35,7 @@
         border: 1px solid gray;
         border-radius: 4px;
         visibility: hidden;
+        background: white;
         transition: 10s visiblity ease-in-out;
       }
 
