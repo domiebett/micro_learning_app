@@ -24,7 +24,11 @@ class App < Sinatra::Application
 
     topic_names.each do |topic_name|
       topic = Topic.find_by(name: topic_name)
-      topic.fetch_articles
+
+      Thread.new do
+        topic.fetch_articles
+      end
+
       user.topics << topic unless user.topics.include? topic
     end
 

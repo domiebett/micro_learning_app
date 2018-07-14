@@ -1,5 +1,6 @@
 require 'sinatra/activerecord'
 require_relative '../external_apis/news_api'
+require_relative '../external_apis/webhose'
 
 class Topic < ActiveRecord::Base
   validates :name, uniqueness: true
@@ -12,19 +13,30 @@ class Topic < ActiveRecord::Base
   has_many :articles
 
   def fetch_articles
-    news_api = NewsApi.new('dca162428fd344318bb51036cbe37695')
-    api_articles = news_api.fetch_articles("#{name} #{category.name}")
+    fetched_articles = []
+    news_api_thread = Thread.new do
+      news_api = NewsApi.new
+      api_articles = news_api.fetch_articles("#{name} #{category.name}")
+      fetched_articles << api_articles
+    end
 
+    webhose_thread = Thread.new do
+      webhose = Webhose.new
+      api_articles = webhose.fetch_articles("#{name} #{category.name}")
+      fetched_articles << api_articles
+    end
+
+    news_api_thread.join
+    webhose_thread.join
+
+    save_articles(fetched_articles.flatten!)
+  end
+
+  def save_articles(api_articles)
     api_articles.each do |api_article|
+      next unless articles.find_by(title: api_article['title']).nil?
 
-      next unless articles.find_by(title: api_article.title).nil?
-
-      articles.create(
-        title: api_article.title,
-        description: api_article.description,
-        author: api_article.author,
-        url: api_article.url
-      )
+      articles.create(api_article)
     end
   end
 end
