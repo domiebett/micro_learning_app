@@ -13,10 +13,7 @@ class App < Sinatra::Application
     user = current_user
     @topics = user.topics || []
 
-    @articles = {}
-    @topics.each do |topic|
-      @articles.store(topic.name.to_sym, topic.articles ? topic.articles : [])
-    end
+    @articles = user.sent_articles.map(&:article)
 
     slim :homepage
   end

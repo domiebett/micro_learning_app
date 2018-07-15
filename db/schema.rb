@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2018_07_11_075250) do
     t.string "url"
     t.string "author"
     t.bigint "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_articles_on_topic_id"
   end
 
@@ -33,6 +35,8 @@ ActiveRecord::Schema.define(version: 2018_07_11_075250) do
   create_table "sent_articles", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_sent_articles_on_article_id"
     t.index ["user_id"], name: "index_sent_articles_on_user_id"
   end
@@ -48,6 +52,8 @@ ActiveRecord::Schema.define(version: 2018_07_11_075250) do
   create_table "user_topics", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_user_topics_on_topic_id"
     t.index ["user_id"], name: "index_user_topics_on_user_id"
   end

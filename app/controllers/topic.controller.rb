@@ -24,7 +24,11 @@ class App < Sinatra::Application
 
     topic_names.each do |topic_name|
       topic = Topic.find_by(name: topic_name)
-      topic.fetch_articles
+
+      Thread.new do
+        topic.fetch_articles
+      end
+
       user.topics << topic unless user.topics.include? topic
     end
 
@@ -42,5 +46,14 @@ class App < Sinatra::Application
     end
 
     redirect "/topics/#{@category.name}"
+  end
+
+  delete '/topics/user/:topic_id', auth: true do
+    user = current_user
+    topic = Topic.find_by(id: params[:topic_id])
+
+    user.topics.delete topic
+
+    redirect '/'
   end
 end

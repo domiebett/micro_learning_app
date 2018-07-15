@@ -7,7 +7,8 @@ require 'coveralls'
 require 'webmock/rspec'
 require 'news-api'
 
-require_relative 'mocks/news_mock'
+require_relative 'mocks/init'
+require_relative '../app/external_apis/init'
 
 Coveralls.wear!
 
@@ -44,8 +45,10 @@ RSpec.configure do |config|
     DatabaseCleaner.start
 
     news_mock = NewsMock.new
+    google_search_mock = GoogleSearchMock.new
 
     allow(News).to receive(:new).and_return news_mock
+    allow(GoogleCustomSearch).to receive(:new).and_return google_search_mock
 
     @user = {
       first_name: 'Dom',

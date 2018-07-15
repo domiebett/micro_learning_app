@@ -4,9 +4,9 @@ require_relative '../models/sent_article'
 require_relative '../models/topic'
 
 scheduler = Rufus::Scheduler.new
+
 scheduler.cron('0 7 * * *') { send_articles }
 
-# Sends articles to users who have topics selected
 def send_articles
   users = User.all
   users.each(&:send_article)

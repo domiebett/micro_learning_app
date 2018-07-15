@@ -13,7 +13,7 @@ programming.topics.create(name: 'python')
 programming.topics.create(name: 'java')
 programming.topics.create(name: 'go')
 
-hacking.topics.create(name: 'metaspoilt')
+hacking.topics.create(name: 'metasploit')
 hacking.topics.create(name: 'ping')
 hacking.topics.create(name: 'nmap')
 

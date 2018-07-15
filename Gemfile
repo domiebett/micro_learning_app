@@ -19,6 +19,7 @@ gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'slim'
 gem 'thin'
+gem 'webhoseio-ruby'
 
 group :test, :development do
   gem 'coveralls'
