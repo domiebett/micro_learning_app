@@ -37,7 +37,7 @@ describe 'App' do
 
     it 'should fetch articles for that topic' do
       follow_redirect!
-      expect(Article.count).to be 1
+      expect(Article.count).to be > 0
     end
   end
 
@@ -76,6 +76,19 @@ describe 'App' do
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_response.body).to include 'You did not enter a valid topic'
+    end
+  end
+
+  context 'when user removes topic from selected topic' do
+    before do
+      post '/signin', @user
+      put '/topics/user', @topics
+      delete '/topics/user/1'
+    end
+
+    it 'should remove topic successfully' do
+      follow_redirect!
+      expect(last_response.body).to_not include 'ruby'
     end
   end
 end

@@ -1,6 +1,5 @@
 require 'sinatra/activerecord'
-require_relative '../external_apis/news_api'
-require_relative '../external_apis/webhose'
+require_relative '../external_apis/init'
 
 class Topic < ActiveRecord::Base
   validates :name, uniqueness: true
@@ -14,20 +13,21 @@ class Topic < ActiveRecord::Base
 
   def fetch_articles
     fetched_articles = []
+
     news_api_thread = Thread.new do
       news_api = NewsApi.new
       api_articles = news_api.fetch_articles("#{name} #{category.name}")
       fetched_articles << api_articles
     end
 
-    webhose_thread = Thread.new do
-      webhose = Webhose.new
-      api_articles = webhose.fetch_articles("#{name} #{category.name}")
+    google_custom_search_thread = Thread.new do
+      google_search = GoogleCustomSearch.new
+      api_articles = google_search.fetch_articles("#{name} #{category.name}")
       fetched_articles << api_articles
     end
 
     news_api_thread.join
-    webhose_thread.join
+    google_custom_search_thread.join
 
     save_articles(fetched_articles.flatten!)
   end

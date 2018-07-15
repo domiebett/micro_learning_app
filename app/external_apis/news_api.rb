@@ -9,7 +9,7 @@ class NewsApi
     api_articles = @news_api.get_everything(
       q: topic_name,
       language: 'en',
-      sortBy: 'relevance'
+      sortBy: 'popularity'
     )
 
     format_articles(api_articles)
