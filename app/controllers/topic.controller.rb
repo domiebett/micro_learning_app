@@ -56,4 +56,14 @@ class App < Sinatra::Application
 
     redirect '/'
   end
+
+  delete '/topics/:topic_id', auth: true, admin: true do
+    topic = Topic.find_by(id: params[:topic_id])
+
+    category_name = topic.category.name
+
+    flash_notice "Topic has been deleted" if topic.destroy
+
+    redirect "/topics/#{category_name}"
+  end
 end

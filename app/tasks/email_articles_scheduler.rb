@@ -5,7 +5,7 @@ require_relative '../models/topic'
 
 scheduler = Rufus::Scheduler.new
 
-scheduler.cron('0 7 * * *') { send_articles }
+scheduler.every('1d') { send_articles }
 
 def send_articles
   users = User.all

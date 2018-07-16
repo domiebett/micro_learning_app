@@ -1,9 +1,8 @@
-- topics.each do |topic|
-  label.topics
-    - if current_user.topics.include? topic
-      input type="checkbox" name="topics[]" value="#{topic.name}" checked=""
-    - else
-      input type="checkbox" name="topics[]" value="#{topic.name}"
+label.topics
+  - if current_user.topics.include? topic
+    input type="checkbox" name="topics[]" value="#{topic.name}" checked=""
+  - else
+    input type="checkbox" name="topics[]" value="#{topic.name}"
 
-    span.checkmark
-    span.name #{topic.name}
+  span.checkmark
+  span.name #{topic.name}

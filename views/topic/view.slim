@@ -3,12 +3,19 @@
 == slim :"general/navbar"
 
 div.content_container.topic_container
-  | Select the topics you would like to learn
+  | Select the topics you would like to be notified on
+
   div.topics_holder
     form action="/topics/user" method="POST"
+
       == use_method :put
 
-      == slim :"topic/_check_boxes", locals: { topics: @topics }
+      - @topics.each do |topic|
+        div.topic_containers
+          == slim :"topic/_check_boxes", locals: { topic: topic }
+
+          - if current_user.admin?
+            input.delete.button type="submit" form="delete_form" value="delete" formaction="/topics/#{topic.id}"
 
       - if current_user.admin?
         div.topics
@@ -19,5 +26,8 @@ div.content_container.topic_container
       input type="hidden" name="category_name" value="#{ @category.name }"
 
       == submit_button 'Save topics'
+
+form id="delete_form" action="topics/id" method="POST"
+  == use_method :delete
 
 == slim :"general/_add_modal", locals: { route_name: 'topics', display_name: 'topic', data: {name: 'category_name', value: @category.name} }

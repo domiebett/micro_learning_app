@@ -1,6 +1,21 @@
 .category_holder {
   height: auto;
 
+  .category_containers {
+    display: inline-block;
+    height: auto;
+    width: 220px;
+
+    .submit_button {
+      margin: 0 auto;
+      background-color: #8d0000;
+      padding: 10px;
+      width: 200px;
+      color: white;
+      overflow: hidden;
+    }
+  }
+
   .categories {
     position: relative;
     height: 200px;
