@@ -1,0 +1,13 @@
+require 'rufus-scheduler'
+require_relative '../models/user'
+require_relative '../models/sent_article'
+require_relative '../models/topic'
+
+scheduler = Rufus::Scheduler.new
+
+scheduler.every('1d') { send_articles }
+
+def send_articles
+  users = User.all
+  users.each(&:send_article)
+end

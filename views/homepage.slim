@@ -1,0 +1,41 @@
+== styles :home
+
+== slim :"general/navbar"
+
+div.content_container
+  | Your topics
+
+  ul.topics
+    - @topics.each do |topic|
+      div.topic
+        | #{topic.name}
+        div.close
+          == button_to(:x, :delete, "/topics/user/#{topic.id}")
+
+    li.topic.add_topic
+      a.link.add_topic href="/categories" + Add Topic
+
+  div.articles
+    h2 History
+
+    - if @articles.empty?
+      div class="not-available"
+        p
+          | An article will be sent to you at 7.00 am. Stay tuned.
+    - else
+      div class="table"
+        div class="thead"
+          div class="tr"
+            div class="th column1" Title
+            div class="th column2" Url
+            div class="th column3" Date Sent
+            div class="th column4" Author
+
+        div class="tbody"
+          - @articles.each do |article|
+            div class="tr"
+              div class="td column1" #{article.title}
+              div class="td column2"
+                a.link href="#{article.url}" #{article.url}
+              div class="td column3" #{article.created_at.strftime("Sent on %d %B %y")}
+              div class="td column4" #{article.author}

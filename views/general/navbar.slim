@@ -1,0 +1,20 @@
+== styles :navbar
+
+div.navbar.dash_navbar
+  div.nav_sections.nav_header
+    div.logo
+    span.app_name
+      a.link href="/dashboard" Learners hub
+  - if !logged_in?
+    div.nav_sections.auth_options
+      div
+        a.link href="/signin" Sign In
+      div
+        a.link href="/signup" Sign Up
+  - else
+    div.nav_sections.auth_options
+      div.user
+        a.link #{current_user.full_name} &#x25bc;
+        div.user_options
+          a.link Profile
+          a.link href="/logout" Logout

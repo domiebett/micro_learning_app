@@ -1,0 +1,67 @@
+.dash_navbar {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  width: 70vw;
+  left: 15vw;
+  z-index: 50;
+
+  .nav_sections {
+    display: inline-flex;
+
+    .app_name {
+      a {
+        font-size: 17px;
+      }
+    }
+  }
+
+  .auth_options {
+    display: inline-flex;
+    float: right;
+
+    .user {
+      &>a {
+        text-align: right;
+        margin: 0;
+        padding-right: 0;
+      }
+      .user_options {
+        position: absolute;
+        right: 0;
+        height: auto;
+        width: 150px;
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 4px;
+        visibility: hidden;
+        background: white;
+      }
+
+      .user_options {
+        a {
+          width: 90%;
+          padding: 10px 0 10px 10%;
+          margin: 0 auto;
+          &:hover {
+            background: rgba(129, 129, 129, 0.2);
+          }
+        }
+      }
+
+      &:hover {
+        .user_options {
+          visibility: visible;
+        }
+      }
+    }
+
+    a {
+      margin-right: 20px;
+    }
+  }
+}
+.hr {
+  margin: 9px auto;
+  width: 96vw !important;
+}
