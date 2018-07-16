@@ -1,3 +1,18 @@
+.topic_containers {
+  display: inline-block;
+  width: 170px;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 10px;
+
+  .delete {
+    margin: 0 auto;
+    background-color: #8d0000;
+    padding: 5px;
+    width: 90%;
+  }
+}
+
 .topics {
   display: inline-flex;
   position: relative;

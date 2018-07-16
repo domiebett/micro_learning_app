@@ -6,9 +6,13 @@ div.content_container.category_container
   | Select the category for the topic you would like to learn.
   div.category_holder
     - @categories.each do |category|
-      div.categories
-        a.link href="/topics/#{category.name}"
-          span #{category.name}
+      div.category_containers
+        div.categories
+          a.link href="/topics/#{category.name}"
+            span #{category.name}
+        - if current_user.admin?
+          == button_to :delete, :delete, "categories/#{category.id}"
+
     - if current_user.admin?
       div.categories.add_category
         a.link.modal_trigger

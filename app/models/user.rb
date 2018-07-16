@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, length: { minimum: 2 }
   validates :password_hash, length: { minimum: 6 }
 
-  has_many :user_topics
+  has_many :user_topics, dependent: :destroy
   has_many :topics, through: :user_topics
 
   has_many :sent_articles, dependent: :destroy

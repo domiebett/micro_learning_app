@@ -7,9 +7,9 @@ class Topic < ActiveRecord::Base
   validates :name, length: { minimum: 2 }
 
   belongs_to :category
-  has_many :user_topics
+  has_many :user_topics, dependent: :destroy
   has_many :users, through: :user_topics
-  has_many :articles
+  has_many :articles, dependent: :destroy
 
   def fetch_articles
     fetched_articles = []

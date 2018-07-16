@@ -34,11 +34,6 @@ describe 'App' do
       expect(last_request.path).to eq '/'
       expect(last_response.body).to include 'ruby', 'java', 'python'
     end
-
-    it 'should fetch articles for that topic' do
-      follow_redirect!
-      expect(Article.count).to be > 0
-    end
   end
 
   context 'when non logged in user accesses "/topics:category" url' do
@@ -89,6 +84,34 @@ describe 'App' do
     it 'should remove topic successfully' do
       follow_redirect!
       expect(last_response.body).to_not include 'ruby'
+    end
+  end
+
+  context 'when admin deletes a topic' do
+    before do
+      post '/signin', @admin
+      post '/topics', @topics
+      delete '/topics/1'
+    end
+
+    it 'should not display the topic anymore for admin' do
+      expect(last_response).to be_redirect
+      follow_redirect!
+      expect(last_response.body).to_not include 'ruby'
+    end
+
+  end
+
+  context 'when non admin deletes a topic' do
+    before do
+      post '/signin', @admin
+      post '/topics', @topics
+    end
+
+    it 'should return 401 for normal user' do
+      post '/signin', @user
+      delete '/topics/1'
+      expect(last_response.status).to eq 401
     end
   end
 end

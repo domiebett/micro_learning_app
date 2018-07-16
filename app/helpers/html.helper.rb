@@ -54,8 +54,11 @@ module Sinatra
       end.join
 
       display_name = name.to_s.split('_').map(&:capitalize).join(' ')
-      %(
-      <div class="text_input_holder" id="#{name}_text_input_holder">
+      generate_input(name, display_name, args, errors)
+    end
+
+    def generate_input(name, display_name, args, errors = [])
+      %( <div class="text_input_holder" id="#{name}_text_input_holder">
         <label for="#{name}_text_input">#{display_name} : </label><br>
         <input class="input_field #{'input_error' unless errors.empty?}"
                 type="#{args[:type]}"
@@ -64,8 +67,7 @@ module Sinatra
                 placeholder="Enter #{display_name}"
                 value="#{args[:value]}" />
         <div class="errors"><ul>#{errors unless errors.empty?}</ul></div>
-      </div>
-      )
+      </div> )
     end
 
     # Creates a submit button for a form.

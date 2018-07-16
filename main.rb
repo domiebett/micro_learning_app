@@ -15,7 +15,7 @@ class App < Sinatra::Application
     end
   end
 
-  set(:admin) do |condition|
+  set(:admin) do |_condition|
     condition do
       halt 401 unless current_user.admin?
     end

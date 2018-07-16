@@ -14,4 +14,12 @@ class App < Sinatra::Application
     flash_warning 'You did not enter a valid category' unless @category.save
     redirect '/categories'
   end
+
+  delete '/categories/:category_id', auth: true, admin: true do
+    category = Category.find_by(id: params[:category_id])
+
+    flash_notice 'You deleted the category successfully' if category.destroy
+
+    redirect '/categories'
+  end
 end
