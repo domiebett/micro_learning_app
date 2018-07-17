@@ -10,8 +10,9 @@
 
 body {
   margin: 0;
-  padding: 90px 0;
+  padding: 90px 0 0 0;
   width: 100vw;
+  height: calc(100vh - 90px);
   overflow-x: hidden;
 }
 
@@ -75,7 +76,9 @@ input {
   left: 0;
   width: 100vw;
   height: auto;
-  max-height: 55px;
+  max-height: 70px;
+  z-index: 50;
+  background-color: white;
 }
 
 div.hr {
