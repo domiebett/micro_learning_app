@@ -4,15 +4,53 @@
 
 div.dashboard
   div.dash_content
-    section.dash_sections.intro_section
-      div.image
-        img.dash_image src="images/laptop_image.jpg"
-      div.content
+    section.dash_section.intro_section
+      div.intro_content
         div
           h1.intro_title
-            | Your step by step learning tool.
+            | Your Step by Step Learning Tool.
           p.intro_text
-            | Ever been stuck wondering what to learn next?
-            |  We are here to help you with that.
+            | Ever been stuck wondering what learning resources
+            |  to use?
+            |  We are here to help you with that. We give
+            |  you the tools to learn any topic you love
+            |  right on your email daily.
 
-          a.call_to_action.link href="/signup" Sign Up to Get Started
+          a.button.call_to_action href="/signup" Sign Up to Get Started
+    section.dash_section.about_section
+      div.about_content
+        div.dash_card.our_purpose
+          div.image
+          h2.card_title purpose
+          span.card_text
+            | We offer worldwide knowledge for all
+
+        div.dash_card.our_belief
+          div.image
+          h2.card_title belief
+          span.card_text
+            | We believe that knowledge is all around us.
+
+        div.dash_card.our_mission
+          div.image
+          h2.card_title mission
+          span.card_text
+            | We ensure to provide the best content.
+
+    section.dash_section.footer_section
+      div.footer_content
+        div.footer_section
+          h2 thanks to:
+          ul
+            li
+              a.link target="_blank" href="https://newsapi.org/" news Api
+            li
+              a.link target="_blank" href="https://www.flaticon.com/" flat icon
+            li
+              a.link target="_blank" href="https://developers.google.com/custom-search/" google custom search
+
+        div.footer_section
+          h2 authors
+          ul
+            li
+              a.link target="_blank" href="https://github.com/domiebett" Dominic Bett
