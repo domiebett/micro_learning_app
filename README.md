@@ -15,15 +15,38 @@ On your terminal run:
 
 Checkout to project root folder.
 > `$ cd micro_learning_app`
+
 ### Install packages.
 On your terminal run:
-> `$ rake Gemfile`
+> `$ bundle install`
+
+### Set up database
+Create database
+> `$ bundle exec rake db:create`
+
+Migrate to the database
+> `$ bundle exec rake db:migrate`
+
+To seed initial data
+> `$ bundle exec rake db:seed`
 
 ### Run application
 > `$ thin -R config.ru start`
 
+However if you dont have thin server installed globally,
+> `$ bundle exec thin -R config.ru start`
+
 ### Open application
 Go to your browser and enter the url `http://localhost:3000`
+
+## Testing application
+
+### Set up test database
+> `$ bundle exec rake db:test:prepare`
+
+To run tests for the application
+
+> `$ bundle exec rspec`
 
 ## Author
 [Dominic Bett](https://github.com/domiebett)
