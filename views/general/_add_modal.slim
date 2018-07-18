@@ -9,6 +9,9 @@ div.modal_background
 
       div.modal_content
         == input :name
+
+        - if display_name == 'category'
+          == text_area :description
         - unless data.nil?
           input type='hidden' name='#{data[:name]}' value='#{data[:value]}'
 

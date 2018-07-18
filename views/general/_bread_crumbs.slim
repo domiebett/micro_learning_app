@@ -1,0 +1,6 @@
+== styles :breadcrumb
+
+ul class="breadcrumb"
+  - crumbs.each do |crumb|
+    li
+      a href="/#{crumb unless crumb == '/'}" #{crumb}

@@ -10,7 +10,7 @@ class App < Sinatra::Application
       if logged_in?
         @user = current_user
       else
-        redirect '/signin'
+        redirect '/dashboard'
       end
     end
   end

@@ -50,6 +50,7 @@ body {
   color: inherit;
   cursor: pointer;
   border: none;
+  outline: 0;
 
   &:hover {
     color: #4f70b5;
@@ -63,6 +64,22 @@ input {
   border-width: 0 0 2px 0;
   border-color: rgba(86, 86, 87, 0.2);
   font-size: 15px;
+  outline: none;
+
+  &:focus, &:active {
+    border-color: #363637;
+    outline: none;
+  }
+}
+
+textarea {
+  display: block;
+  height: auto;
+  transition: border 0.5s ease-in-out;
+  border-width: 0 0 2px 0;
+  border-color: rgba(86, 86, 87, 0.2);
+  font-size: 15px;
+  outline: none;
 
   &:focus, &:active {
     border-color: #363637;
@@ -82,9 +99,16 @@ input {
 }
 
 div.hr {
-  width: 100vw;
+  width: 100%;
   background-color: #848485;
   height: 1px;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border-width: 1px 0 0 0;
+  border-top: 1px solid #848485;
 }
 
 .logo {
@@ -159,7 +183,8 @@ div.hr {
 
   .tbody {
     width: 100%;
-    height: 600px;
+    min-height: 500px;
+    height: 60vh;
     overflow-x: hidden;
     overflow-y: scroll;
 

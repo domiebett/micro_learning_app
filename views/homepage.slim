@@ -3,7 +3,7 @@
 == slim :"general/navbar"
 
 div.content_container
-  | Your topics
+  h3 Your topics
 
   ul.topics
     - @topics.each do |topic|
@@ -13,10 +13,12 @@ div.content_container
           == button_to(:x, :delete, "/topics/user/#{topic.id}")
 
     li.topic.add_topic
-      a.link.add_topic href="/categories" + Add Topic
+      a.link.add_topic href="/categories"
+        i class="fas fa-pen fa-spin"
+        span &nbsp Add Topic
 
   div.articles
-    h2 History
+    h3 History
 
     - if @articles.empty?
       div class="not-available"
