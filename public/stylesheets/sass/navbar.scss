@@ -4,7 +4,7 @@
   padding: 10px;
   width: 70vw;
   margin-left: 15vw;
-  z-index: 900;
+  z-index: 300;
 
   .nav_sections {
     display: inline-flex;
@@ -24,7 +24,6 @@
       .sign_up {
         background-color: white;
         border: 1px solid #4f70b5;
-        border-radius: 8px;
         padding: 8px;
         width: 70px;
 
@@ -37,6 +36,17 @@
 
     .user {
       position: relative;
+      padding-right: 10px;
+      transition: none;
+
+      &:hover {
+        background-color: #4f70b5;
+        color: white;
+
+        &>a {
+          color: white;
+        }
+      }
       &>a {
         text-align: right;
         margin: 0;
@@ -44,23 +54,40 @@
       }
       .user_options {
         position: absolute;
+        top: 120%;
         right: 0;
         height: auto;
-        width: 150px;
-        padding: 10px;
-        border: 1px solid gray;
-        border-radius: 4px;
+        width: 200px;
+        min-width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.29);
         visibility: hidden;
         background: white;
-      }
+        color: #4f70b5;
+        z-index: 300;
 
-      .user_options {
-        a {
-          width: 90%;
-          padding: 10px 0 10px 10%;
-          margin: 0 auto;
-          &:hover {
-            background: rgba(129, 129, 129, 0.2);
+        span {
+          display: block;
+          width: 100%;
+          padding: 5px 0 5px 0;
+
+          &.headers {
+            font-weight: bold;
+            color: black;
+            padding: 3px 0 3px 0;
+          }
+
+          &.options:hover {
+            background: #4f70b5;
+
+            a {
+              color: white;
+            }
+          }
+
+          a {
+            margin-left: 10px;
           }
         }
       }

@@ -42,7 +42,7 @@ describe 'App' do
     it 'should redirect back to sign in page' do
       expect(last_response).to be_redirect
       follow_redirect!
-      expect(last_request.path).to eq '/signin'
+      expect(last_request.path).to eq '/dashboard'
     end
   end
 

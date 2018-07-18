@@ -1,4 +1,9 @@
 .content_container {
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
+
   .topics {
     display: block;
     width: 100%;
@@ -16,9 +21,14 @@
 
       &.add_topic {
         border: none;
+        padding: 0;
+
+        i {
+          color: #4f70b5;
+        }
 
         .link {
-          padding: 0;
+          padding: 6px;
         }
       }
 
@@ -42,8 +52,13 @@
         }
       }
 
-      &:hover {
-        background-color: rgba(128, 128, 128, 0.29);
+      &:hover:last-child {
+        background-color: rgba(0, 0, 0, 0.32);
+      }
+
+      &:hover:not(:last-child) {
+        background-color: #4f70b5;
+        color: white;
       }
     }
   }

@@ -17,5 +17,7 @@ div.navbar
         div.user
           a.link #{current_user.full_name} &#x25bc;
           div.user_options
-            a.link Profile
-            a.link href="/logout" Logout
+            span.headers
+              a.header_link Authentication
+            span.options
+              a.link href="/logout" Logout
