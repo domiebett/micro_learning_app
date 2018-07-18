@@ -57,6 +57,17 @@ module Sinatra
       generate_input(name, display_name, args, errors)
     end
 
+    def text_area(name)
+      display_name = name.to_s.split('_').map(&:capitalize).join(' ')
+      %( <div class="text_area_holder" id="#{name}_text_area_holder">
+        <label for="#{name}_text_area">#{display_name} : </label><br>
+        <textarea class="input_field"
+                id="#{name}_text_area"
+                name="#{name}"
+                placeholder="Enter #{display_name}"></textarea>
+      </div> )
+    end
+
     def generate_input(name, display_name, args, errors = [])
       %( <div class="text_input_holder" id="#{name}_text_input_holder">
         <label for="#{name}_text_input">#{display_name} : </label><br>

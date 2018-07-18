@@ -3,7 +3,11 @@
 == slim :"general/navbar"
 
 div.content_container.topic_container
-  | Select the topics you would like to be notified on
+  == slim :"general/_bread_crumbs", locals: {crumbs: ['/', 'categories', "#{@category.name.downcase}"]}
+
+  p Select the topics you would like to be notified on
+
+  hr
 
   div.topics_holder
     form action="/topics/user" method="POST"
@@ -25,7 +29,7 @@ div.content_container.topic_container
 
       input type="hidden" name="category_name" value="#{ @category.name }"
 
-      == submit_button 'Save topics'
+      == submit_button 'Save selection'
 
 form id="delete_form" action="topics/id" method="POST"
   == use_method :delete
