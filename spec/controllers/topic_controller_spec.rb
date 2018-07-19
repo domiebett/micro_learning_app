@@ -4,26 +4,30 @@ require_relative '../../app/models/article'
 describe 'App' do
   before do
     create(:normal_user)
+    create(:category)
     @topics = {
-        topics: %w[ruby java python],
+        topics: %w[ruby],
         category_name: 'programming'
     }
+    allow(Thread).to receive(:new)
   end
 
   context 'when logged in user accesses "/topics/:category" url' do
     before do
+      create(:topic)
       post '/signin', @user
       get '/topics/programming'
     end
 
     it 'should show the topics for that category' do
       expect(last_response).to be_ok
-      expect(last_response.body).to include 'ruby', 'java', 'python', 'go'
+      expect(last_response.body).to include 'ruby'
     end
   end
 
   context 'when logged in user selects topics' do
     before do
+      create(:topic)
       post '/signin', @user
       put '/topics/user', @topics
     end
@@ -32,7 +36,7 @@ describe 'App' do
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_request.path).to eq '/'
-      expect(last_response.body).to include 'ruby', 'java', 'python'
+      expect(last_response.body).to include 'ruby'
     end
   end
 
@@ -51,6 +55,7 @@ describe 'App' do
       post '/signin', @user
       post '/topics', @topics
     end
+
     it 'should return 401 response' do
       expect(last_response.status).to be 401
     end
@@ -74,8 +79,9 @@ describe 'App' do
     end
   end
 
-  context 'when user removes topic from selected topic' do
+  context 'when user removes topic from selected topics' do
     before do
+      create(:topic)
       post '/signin', @user
       put '/topics/user', @topics
       delete '/topics/user/1'

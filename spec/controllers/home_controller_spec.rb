@@ -4,6 +4,7 @@ describe 'App' do
   context 'when logged in user opens home page url' do
     before do
       create(:normal_user)
+      create(:category)
       post '/signin', @user
     end
 
