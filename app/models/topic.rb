@@ -29,10 +29,11 @@ class Topic < ActiveRecord::Base
     news_api_thread.join
     google_custom_search_thread.join
 
-    save_articles(fetched_articles.flatten!)
+    save_articles((fetched_articles.flatten unless fetched_articles.empty?))
   end
 
   def save_articles(api_articles)
+    api_articles ||= []
     api_articles.each do |api_article|
       next unless articles.find_by(title: api_article['title']).nil?
 

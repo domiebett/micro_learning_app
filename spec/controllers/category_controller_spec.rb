@@ -6,17 +6,13 @@ describe 'App' do
   context 'when logged in user opens "/categories" url' do
     before do
       post '/signin', @user
+      create(:category)
       get '/categories'
-
-      @category = {
-          name: 'programming',
-          description: 'All about programming languages'
-      }
     end
 
     it 'should respond with a page showing categories' do
       expect(last_response).to be_ok
-      expect(last_response.body).to include 'programming', 'hacking', 'philosophy'
+      expect(last_response.body).to include 'programming'
     end
   end
 
@@ -35,7 +31,7 @@ describe 'App' do
   context 'when non admin attempts to add a category' do
     before do
       post '/signin', @user
-      post '/categories', @topics
+      post '/categories', @category
     end
     it 'should return 401 response' do
       expect(last_response.status).to be 401
@@ -53,7 +49,7 @@ describe 'App' do
     it { is_expected.to be_redirect }
 
     before { post '/categories' }
-    it 'should flag empty topics' do
+    it 'should flag empty categories' do
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_response.body).to include 'You did not enter a valid category'

@@ -36,9 +36,13 @@ end
 RSpec.configure do |config|
   config.include RSpecMixin
 
+  config.mock_with :rspec do |mocks|
+    mocks.syntax = [:expect, :should]
+  end
+
   config.before(:suite) do
     FactoryBot.find_definitions
-    DatabaseCleaner.strategy = :truncation, { except: %w[categories topics] }
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
