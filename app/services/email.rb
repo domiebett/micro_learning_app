@@ -1,6 +1,9 @@
 require 'pony'
 
 class Email
+
+  include Pony
+
   def initialize(name, email)
     @name = name
     @email = email
@@ -15,12 +18,11 @@ class Email
       url: #{article.url}
     )
 
-    Pony.mail(
+    mail(
       to: @email,
       from: @app_email,
       subject: email_subject,
       body: email_body
     )
-    puts "Email has been sent to #{@name}"
   end
 end
