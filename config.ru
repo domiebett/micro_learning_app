@@ -5,4 +5,6 @@ require 'sass/plugin/rack'
 Sass::Plugin.options[:style] = :compressed
 use Sass::Plugin::Rack
 
-run App.new
+require 'sidekiq/web'
+
+run Rack::URLMap.new('/' => App, '/sidekiq' => Sidekiq::Web)

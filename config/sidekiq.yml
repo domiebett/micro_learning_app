@@ -1,0 +1,8 @@
+:schedule:
+  send_emails:
+    cron: '* * * * *'
+    class: EmailWorker
+:verbose: true
+:concurrency: 10
+:queues:
+    - default

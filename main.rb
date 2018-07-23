@@ -1,6 +1,7 @@
 require 'sinatra'
-require 'slim'
+
 require_relative 'app/helpers/init'
+require_relative 'app/workers/init'
 
 class App < Sinatra::Application
   enable :sessions

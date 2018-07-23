@@ -24,5 +24,6 @@ class Email
       subject: email_subject,
       body: email_body
     )
+    puts "Email has been sent to #{@name}"
   end
 end
