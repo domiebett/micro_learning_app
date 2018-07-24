@@ -1,0 +1,7 @@
+- if articles.empty?
+  div.empty_topics
+    | You have not selected any topics
+- else
+  == slim :"home/_today_recommendations", locals: { recommended_article: recommended_article }
+
+  == slim :"home/_other_recommendations", locals: { articles: articles }

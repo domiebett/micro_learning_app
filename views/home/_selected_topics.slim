@@ -1,0 +1,13 @@
+== styles :selected_topics
+
+ul.topics
+  - topics.each do |topic|
+    div.topic
+      | #{topic.name}
+      div.close
+        == button_to(:x, :delete, "/topics/user/#{topic.id}")
+
+  li.topic.add_topic
+    a.link.add_topic href="/categories"
+      i class="fas fa-pen fa-spin"
+      span &nbsp Add Topic
