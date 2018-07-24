@@ -64,16 +64,20 @@
   }
 }
 
+.history_content {
+  visibility: hidden;
+  position: absolute;
+}
+
 .recommended_content {
-  display: inline-flex;
   width: 100%;
-  height: calc(100vh - 250px);
+  height: calc(100vh - 300px);
+  visibility: hidden;
+  overflow: hidden;
 
   .today {
-    float: left;
-    width: 70%;
+    width: 100%;
     height: calc(100vh - 250px);
-    border-right: 1px solid #4f70b5;
     overflow: hidden;
     text-overflow: ellipsis;
 
@@ -86,10 +90,41 @@
       background-position: center;
     }
 
+    &.youtube_background {
+      background: black;
+
+      .image {
+        height: auto;
+      }
+    }
+
+    &.other_sites {
+
+      .image {
+        background: black;
+
+        h2 {
+          display: inline-block;
+          height: 40px;
+          width: 100%;
+          margin-top: 25%;
+          font-size: 30px;
+          color: white;
+          text-align: center;
+        }
+      }
+    }
+
     .body {
       padding-top: 10px;
 
       h3 {
+        text-decoration: underline;
+        color: #4f70b5;
+
+        &:hover {
+          transform: scaleY(1.01);
+        }
         .link {
           font-size: inherit;
           padding: 0;
@@ -99,30 +134,83 @@
   }
 
   .other {
-    float: right;
-    width: 30%;
-    height: 100%;
+    width: 100%;
+    height: auto;
     padding: 0 10px 0 10px;
+    margin-top: 20px;
     overflow-y: scroll;
     overflow-x: hidden;
+    .articles {
+      display: inline-grid;
+      grid-auto-flow: row;
+      grid-template-columns: auto auto auto;
+      width: 100%;
 
-    .article {
-      height: 200px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      .link {
-        padding: 0;
+      .cover_link {
+        position: absolute;
+        display: block;
+        background: transparent;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 100;
       }
 
-      h4 {
-        padding: 0;
-      }
+      .article {
+        position: relative;
+        width: 90%;
+        margin: 2.5%;
+        padding: 2.5%;
+        height: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.55);
 
-      p {
-        padding: 0;
-        margin-top: 1px;
+        &:hover {
+          transform: scale(0.99);
+        }
+
+        .link {
+          padding: 0;
+        }
+
+        h4:first-child {
+          padding: 0;
+        }
+
+        p {
+          padding: 0;
+          margin-top: 1px;
+        }
       }
     }
   }
+}
+
+.empty_topics {
+  padding-top: 20px;
+}
+
+.home_triggers {
+  display: inline-flex;
+
+  .link {
+    display: block;
+    width: 150px;
+    text-align: center;
+    border: 1px solid #4f70b5;
+    margin: 0;
+    cursor: pointer;
+    &.active {
+      background-color: #4f70b5;
+      color: white;
+    }
+  }
+}
+
+.show_tab {
+  visibility: visible;
+  position: relative;
+  height: auto;
 }

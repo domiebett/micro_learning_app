@@ -18,43 +18,65 @@ div.content_container
         span &nbsp Add Topic
 
   div.articles
-    / h3 History
-    /
-    / - if @sent_articles.empty?
-    /   div class="home_contents history_content not-available"
-    /     p
-    /       | An article will be sent to you at 7.00 am. Stay tuned.
-    / - else
-    /   div class="home_contents history_content table"
-    /     div class="thead"
-    /       div class="tr"
-    /         div class="th column1" Title
-    /         div class="th column2" Url
-    /         div class="th column3" Date Sent
-    /         div class="th column4" Author
-    /
-    /     div class="tbody"
-    /       - @sent_articles.each do |article|
-    /         div class="tr"
-    /           div class="td column1" #{article.title}
-    /           div class="td column2"
-    /             a.link href="#{article.url}" #{article.url}
-    /           div class="td column3" #{article.created_at.strftime("Sent on %d %B %y")}
-    /           div class="td column4" #{article.author}
+    div.home_triggers
+      a.link.tab_trigger.history_trigger History
 
-    h3 Recommended
+      a.link.tab_trigger.recommended_trigger.active Recommended
 
-    div class="home_contents recommended_content"
-      div class="today"
-        div.image style="background-image:url(#{@recommended_article.image_url});"
-        div.body
-          h3
-            a.link href="#{@recommended_article.url}" #{@recommended_article.title}
-          p #{@recommended_article.description}
+    - if @sent_articles.empty?
+      div class="home_contents history_content not-available"
+        p
+          | An article will be sent to you at 7.00 am. Stay tuned.
+    - else
+      div class="home_contents history_content table"
+        div class="thead"
+          div class="tr"
+            div class="th column1" Title
+            div class="th column2" Url
+            div class="th column3" Date Sent
+            div class="th column4" Author
+
+        div class="tbody"
+          - @sent_articles.each do |article|
+            div class="tr"
+              div class="td column1" #{article.title}
+              div class="td column2"
+                a.link href="#{article.url}" #{article.url}
+              div class="td column3" #{article.created_at.strftime("Sent on %d %B %y")}
+              div class="td column4" #{article.author}
+
+    div class="home_contents recommended_content show_tab"
+      - if @articles.empty?
+        div.empty_topics
+          | You have not selected any topics
+      - elsif @recommended_article.author == 'www.youtube.com'
+        div class="today youtube_background"
+          div.image
+            iframe width="100%" height="100%" src="https://www.youtube.com/embed/#{@recommended_article.url.split('?')[1].split("=")[1]}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"
+      - elsif @recommended_article.image_url.nil?
+        div class="today other_sites"
+          div.image
+            h2 #{@recommended_article.author}
+          div.body
+            h3
+              a.link href="#{@recommended_article.url}" #{@recommended_article.title}
+            p #{@recommended_article.description.strip}
+      - else
+        div class="today"
+          div.image style="background-image:url(#{@recommended_article.image_url});"
+          div.body
+            h2
+              a.link href="#{@recommended_article.url}" #{@recommended_article.title}
+            p #{@recommended_article.description}
 
       div class="other"
-        - @articles.each do |article|
-          div.article
-            h4
-              a.link href="#{article.url}" #{article.title.strip}
-            p #{article.description.strip}
+        h3 Recommended Articles
+
+        div.articles
+          - @articles.each do |article|
+            div.article.card
+              a.cover_link href="#{article.url}"
+              h4 #{article.title.strip}
+              p #{article.description.strip}
+
+== scripts :home_tabs
