@@ -18,11 +18,13 @@ class Email
       url: #{article.url}
     )
 
-    mail(
+    Pony.mail(
       to: @email,
       from: @app_email,
       subject: email_subject,
       body: email_body
     )
+
+    puts "Email sent to #{@name}"
   end
 end

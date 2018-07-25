@@ -4,18 +4,21 @@
   - if recommended_article.author == 'www.youtube.com'
     .youtube_background
       .image
-        iframe width="100%" height="100%" src="https://www.youtube.com/embed/#{recommended_article.url.split('?')[1].split("=")[1]}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"
+        iframe(
+          width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media"
+          src="https://www.youtube.com/embed/#{recommended_article.url.split("=")[1]}"
+          allowfullscreen="allowfullscreen")
+
   - elsif recommended_article.image_url.nil?
     .other_sites
-      .image
-        h2 #{recommended_article.author}
-      .body
-        h3
-          a.link href="#{recommended_article.url}" #{recommended_article.title}
-        p #{recommended_article.description.strip}
+      iframe(
+        width="100%" height="100%;" frameborder="0" class="other_iframe"
+        src="#{recommended_article.url}"
+      )
+
   - else
     .image style="background-image:url(#{recommended_article.image_url});"
     .body
-      h2
+      h3
         a.link href="#{recommended_article.url}" #{recommended_article.title}
       p #{recommended_article.description}

@@ -2,7 +2,6 @@ require 'sinatra/activerecord'
 require_relative '../external_apis/init'
 
 class Topic < ActiveRecord::Base
-  validates :name, uniqueness: true
   validates :name, presence: true
   validates :name, length: { minimum: 2 }
 
@@ -14,13 +13,9 @@ class Topic < ActiveRecord::Base
   def fetch_articles
     fetched_articles = []
 
-    google_custom_search_thread = Thread.new do
-      google_search = GoogleCustomSearch.new
-      api_articles = google_search.fetch_articles(name)
-      fetched_articles << api_articles
-    end
-
-    google_custom_search_thread.join
+    google_search = GoogleCustomSearch.new
+    api_articles = google_search.fetch_articles("#{name} #{category.name}")
+    fetched_articles << api_articles
 
     save_articles((fetched_articles.flatten unless fetched_articles.empty?))
   end

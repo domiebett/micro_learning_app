@@ -29,12 +29,29 @@
       margin: 2.5%;
       padding: 2.5%;
       height: auto;
+      min-height: 250px;
       overflow: hidden;
       text-overflow: ellipsis;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.55);
 
       &:hover {
-        transform: scale(0.99);
+        transform: scale(0.98);
+      }
+
+      div {
+        position: absolute;
+        width: 90%;
+        height: 100%;
+        top: 0;
+        left: 5%;
+      }
+
+      .front {
+        display: block;
+      }
+
+      .back {
+        display: none;
       }
 
       .link {
