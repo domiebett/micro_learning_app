@@ -13,7 +13,10 @@ class App < Sinatra::Application
     user = current_user
     @topics = user.topics || []
 
-    @articles = user.sent_articles.map(&:article)
+    @articles = @topics.map(&:articles)
+    @articles.flatten! unless @articles.empty?
+    @recommended_article = @articles.sample
+    @sent_articles = user.sent_articles.map(&:article)
 
     slim :homepage
   end

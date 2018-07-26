@@ -13,10 +13,10 @@ class GoogleCustomSearch
     param_dict[:q] ||= ''
     @uri = URI.parse("#{BASE_URL}?#{URI.encode_www_form(param_dict)}")
 
-    get_contents
+    fetch_contents
   end
 
-  def get_contents
+  def fetch_contents
     response = Net::HTTP.get_response(@uri)
 
     unless response.is_a? Net::HTTPSuccess
@@ -39,7 +39,8 @@ class GoogleCustomSearch
         title: article['title'],
         url: article['formattedUrl'],
         author: article['displayLink'],
-        description: article['snippet']
+        description: article['snippet'],
+        image_url: nil
       }
     end
   end

@@ -22,15 +22,19 @@ class App < Sinatra::Application
       user.topics.delete topic unless topic_names.include? topic.name
     end
 
+    fetch_articles_thread = nil
+
     topic_names.each do |topic_name|
       topic = Topic.find_by(name: topic_name)
 
-      Thread.new do
+      fetch_articles_thread = Thread.new do
         topic.fetch_articles
       end
 
       user.topics << topic unless user.topics.include? topic
     end
+
+    fetch_articles_thread.join unless fetch_articles_thread.nil?
 
     redirect '/'
   end

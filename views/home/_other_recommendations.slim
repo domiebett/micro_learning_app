@@ -1,0 +1,11 @@
+== styles :other_recommendations
+
+.other
+  h3 Recommended Articles
+
+  .articles
+    - articles.each do |article|
+      .article
+        a.cover_link href="#{article.url}"
+        h4 #{article.title.strip}
+        p #{article.description.strip}
