@@ -9,8 +9,7 @@
   .articles {
     width: 100%;
     display: inline-grid;
-    grid-auto-flow: row;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 33.3% 33.3% 33.3%;
 
     .cover_link {
       position: absolute;
