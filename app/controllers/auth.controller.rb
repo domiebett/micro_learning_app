@@ -6,11 +6,13 @@ require_relative '../models/user'
 class App < Sinatra::Application
 
   get '/signin' do
+    redirect '/' if logged_in?
     @inputs = %i[email password]
     slim :"auth/login"
   end
 
   get '/signup' do
+    redirect '/' if logged_in?
     @inputs = %i[first_name last_name email password]
     slim :"auth/register"
   end

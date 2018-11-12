@@ -21,7 +21,8 @@ class NewsApi
         title: article.title,
         description: article.description,
         author: article.author,
-        url: article.url
+        url: article.url,
+        image_url: article.urlToImage
       }
     end
   end

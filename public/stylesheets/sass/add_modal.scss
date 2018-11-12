@@ -1,7 +1,7 @@
 .modal_container {
   position: fixed;
   background-color: white;
-  top: 30vh;
+  top: 20vh;
   left: 25vw;
   width: 50vw;
   height: auto;
@@ -29,9 +29,25 @@
 
   .modal_content {
     width: 100%;
+    margin-bottom: 20px;
 
     input {
       width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+    }
+  }
+
+  .modal_footer {
+
+    .submit_button {
+      background-color: #4f70b5;
+      color: white;
+      float: right;
     }
   }
 }
@@ -43,7 +59,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 54;
-  background-color: rgba(0, 0, 0, 0.27);
+  background-color: rgba(0, 0, 0, 0.58);
   visibility: hidden;
 }
 

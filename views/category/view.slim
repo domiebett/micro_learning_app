@@ -2,21 +2,28 @@
 
 == slim :"general/navbar"
 
-div.content_container.category_container
-  | Select the category for the topic you would like to learn.
+div.content_container.categories_container
+  == slim :"general/_bread_crumbs", locals: {crumbs: %w(/ categories)}
+
+  h3 Choose a category
+  hr
+
   div.category_holder
     - @categories.each do |category|
       div.category_containers
-        div.categories
-          a.link href="/topics/#{category.name}"
-            span #{category.name}
-        - if current_user.admin?
-          == button_to :delete, :delete, "categories/#{category.id}"
+        a.link href="/topics/#{category.name}"
 
-    - if current_user.admin?
-      div.categories.add_category
-        a.link.modal_trigger
-          span.add +
-          span.text Add Category
+        div.category_name
+          a.link #{ category.name }
+        div.category_description
+          span #{ category.description }
+          - if current_user.admin?
+            div.tool_bar
+              == button_to :delete, :delete, "categories/#{category.id}"
+
+- if current_user.admin?
+  div.category_containers
+    div.add_button.modal_trigger
+      span +
 
 == slim :"general/_add_modal", locals: { display_name: 'category', route_name: 'categories', data: nil }
